@@ -45,14 +45,15 @@ void bmpSetup() {
 void adxlFunc() {
   float ax,ay,az;
   accelerometer.getAcceleration(&ax,&ay,&az); // Writes Accelerometer data to variables
-  comms = comms + String(ax-2.05) + "," + String(ay-2.09) + "," + String (az-3.32) + ",";
+  comms = comms + String((ax-2.05)*100) + "," + String((ay-2.09)*100) + "," + String ((az-3.32)*100) + ",";
+  // XYZ Values are multiplied by 100 to make them more visible on Serial Plotter
 }
 void bmpFunc() {
   float pressure, temperature, altimeter;
   pressure = bmp.readPressure();          // Reads Pressure
   temperature = bmp.readTemperature();    // Reads Temperature
   altimeter = bmp.readAltitude (1013.25); // Finds Alitude
-  comms = comms + String(pressure) + "," + String(temperature) + "," + String (altimeter + 63) + ",";
+  comms = comms + String(pressure/1000) + "," + String(temperature) + "," + String (altimeter + 63) + ",";
 }
 void hc12Func() {
   HC12.println(comms); // Print String Comms.
