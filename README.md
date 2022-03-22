@@ -1,4 +1,4 @@
-# ArduinoLander
+# NUIG Lander Arduino script file.
 Code for NUIG lander project. Using Arduino Nano, BMP280 (**The Purple One!!**), ADXL335 and HC12.
 # Install these Libraries
 * Accelerometer ADXL335
