@@ -5,7 +5,7 @@
 #include "Adafruit_BMP280.h"
 #include "ADXL335.h"
 // Function Declarations
-void bmpSetup();
+void sensorSetup();
 void hc12Setup();
 void adxlFunc(); // Acceleromometer
 void bmpFunc();  // Temperature / Pressure (Purple Variant)
@@ -18,8 +18,7 @@ const int xInput = A1, yInput = A2, zInput = A3;
 String comms;
 void setup() {  // Calls Sensor Setup Functions
   bmpSetup();
-  hc12Setup();
-  accelerometer.begin();
+  sensorSetup();
 } 
 void loop() {   // Calls Sensor Loop Functions
   adxlFunc();   // Gathers and Stores accelerometer data
@@ -28,9 +27,10 @@ void loop() {   // Calls Sensor Loop Functions
   delay(100);
 }
 // Sensor Setup Functions
-void hc12Setup() {
+void sensorSetup() {
   Serial.begin(115200);
   HC12.begin(115200);   // Serial port to HC12  
+  accelerometer.begin();
 }
 void bmpSetup() {
   bmp.begin();          //Begin the sensor
